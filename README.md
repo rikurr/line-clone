@@ -23,3 +23,5 @@ yarn web codegen
 - Hasura
 - Css module
 - Eslint, Prettier
+- Jest
+- Story Book
