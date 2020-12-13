@@ -1,5 +1,7 @@
 ## Next.js Hasura TypeScript環境構築
 
+yarn install -W
+
 
 ## フロントエンドのローカル環境
 yarn web dev
