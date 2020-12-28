@@ -1,12 +1,67 @@
 - table:
     schema: public
     name: chat
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: owner_id
+  array_relationships:
+  - name: messages
+    using:
+      foreign_key_constraint_on:
+        column: chat_id
+        table:
+          schema: public
+          name: message
+  - name: users
+    using:
+      foreign_key_constraint_on:
+        column: chat_id
+        table:
+          schema: public
+          name: chat_users
 - table:
     schema: public
     name: chat_users
+  object_relationships:
+  - name: chat
+    using:
+      foreign_key_constraint_on: chat_id
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
 - table:
     schema: public
     name: message
+  object_relationships:
+  - name: chat
+    using:
+      foreign_key_constraint_on: chat_id
+  - name: sender
+    using:
+      foreign_key_constraint_on: sender_id
 - table:
     schema: public
     name: users
+  array_relationships:
+  - name: chats
+    using:
+      foreign_key_constraint_on:
+        column: owner_id
+        table:
+          schema: public
+          name: chat
+  - name: messages
+    using:
+      foreign_key_constraint_on:
+        column: sender_id
+        table:
+          schema: public
+          name: message
+  - name: users
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: chat_users
