@@ -1,8 +1,8 @@
-import { AppProps } from 'next/app'
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client'
 import { ApolloProvider } from '@apollo/react-hooks'
-
-import 'minireset.css'
+import { Routes } from './routes/index'
 
 const createApolloClient = () => {
   return new ApolloClient({
@@ -13,13 +13,15 @@ const createApolloClient = () => {
   })
 }
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+function App() {
   const client = createApolloClient()
   return (
-    <ApolloProvider client={client}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <Routes />
+      </ApolloProvider>
+    </BrowserRouter>
   )
 }
 
-export default MyApp
+export default App
