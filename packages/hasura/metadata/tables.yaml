@@ -20,6 +20,69 @@
         table:
           schema: public
           name: chat_users
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+        - owner_id:
+            _eq: X-Hasura-User-Id
+        - users:
+            user_id:
+              _eq: X-Hasura-User-Id
+        - owner_id:
+            _is_null: true
+      columns:
+      - name
+      - owner_id
+      - picture
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - picture
+      - create_at
+      - owner_id
+      filter:
+        _or:
+        - owner_id:
+            _eq: X-Hasura-User-Id
+        - users:
+            user_id:
+              _eq: X-Hasura-User-Id
+        - owner_id:
+            _is_null: true
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - name
+      - picture
+      filter:
+        _or:
+        - owner_id:
+            _eq: X-Hasura-User-Id
+        - users:
+            user_id:
+              _eq: X-Hasura-User-Id
+        - owner_id:
+            _is_null: true
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _or:
+        - owner_id:
+            _eq: X-Hasura-User-Id
+        - users:
+            user_id:
+              _eq: X-Hasura-User-Id
+        - owner_id:
+            _is_null: true
 - table:
     schema: public
     name: chat_users
@@ -40,6 +103,37 @@
   - name: sender
     using:
       foreign_key_constraint_on: sender_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        _or:
+        - sender_id:
+            _eq: X-Hasura-User-Id
+        - chat:
+            users:
+              user_id:
+                _eq: X-Hasura-User-Id
+      columns:
+      - content
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - content
+      - created_at
+      - sender_id
+      - chat_id
+      filter:
+        _or:
+        - sender_id:
+            _eq: X-Hasura-User-Id
+        - chat:
+            users:
+              user_id:
+                _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: users
@@ -65,3 +159,23 @@
         table:
           schema: public
           name: chat_users
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - picture
+      - username
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - name
+      - picture
+      - username
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
