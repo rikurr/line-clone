@@ -1,5 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-export const Public: React.FC = () => {
-  return <div>public</div>
+type Props = {
+  onRedirect: () => void
+}
+
+export const Public: React.FC<Props> = ({ onRedirect }) => {
+  useEffect(() => {
+    onRedirect()
+  }, [onRedirect])
+  return <></>
 }
