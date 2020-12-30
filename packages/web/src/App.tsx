@@ -19,8 +19,8 @@ function App() {
   return (
     <BrowserRouter>
       <Auth0Provider
-        domain="line-clone-local.jp.auth0.com"
-        clientId="6tVV9q1WIgMXVBgDBiPqApdMO8b5Yg5o"
+        domain={process.env.REACT_APP_AUTH0_DOMAIN!}
+        clientId={process.env.REACT_APP_AUTH0_CLIENT_ID!}
         redirectUri={window.location.origin}
       >
         <Routes />
