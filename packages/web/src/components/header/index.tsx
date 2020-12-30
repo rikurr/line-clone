@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './index.module.css'
 
 type Props = {
-  pageTitle: string
+  pageTitle?: string
 }
 
 export const Header: React.FC<Props> = ({ pageTitle = 'React Hasura App' }) => {

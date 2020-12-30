@@ -4,8 +4,10 @@ import { Private } from './private'
 import { Public } from './public'
 
 export const Routes: React.FC = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0()
-  return isAuthenticated ? (
+  const { isAuthenticated, loginWithRedirect, isLoading } = useAuth0()
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : isAuthenticated ? (
     <Private />
   ) : (
     <Public onRedirect={loginWithRedirect} />
