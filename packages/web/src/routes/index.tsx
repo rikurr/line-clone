@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React from 'react'
+import { LoadingSpinner } from '../components/loading-spinner'
 
 import { Private } from './private'
 import { Public } from './public'
@@ -10,7 +11,7 @@ export const Routes: React.FC = () => {
     return <div>Error</div>
   }
   return isLoading ? (
-    <div>Loading...</div>
+    <LoadingSpinner />
   ) : isAuthenticated ? (
     <Private />
   ) : (

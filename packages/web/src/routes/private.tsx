@@ -16,7 +16,6 @@ export const Private: React.FC = () => {
           audience: process.env.REACT_APP_AUTH0_AUDIENCE,
           scope: 'read:users',
         })
-        console.log(token)
         setAccessToken(token)
       } catch (e) {
         console.log(e.message)
@@ -25,11 +24,10 @@ export const Private: React.FC = () => {
     getAccessToken()
   }, [getAccessTokenSilently, user])
 
-  console.log(user)
   return (
     <ApolloProvider accessToken={accessToken}>
       <Switch>
-        <Route path="/">
+        <Route path="/" exact>
           <Home />
         </Route>
       </Switch>
