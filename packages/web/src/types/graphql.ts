@@ -11,7 +11,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  timestamptz: string;
+  timestamptz: any;
 };
 
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */

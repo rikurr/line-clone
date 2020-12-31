@@ -31,7 +31,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "codegen": "gql-gen -w -r dotenv/config",
+    "codegen": "graphql-codegen -r dotenv/config",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
