@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React from 'react'
-import { LoadingSpinner } from '../components/loading-spinner'
+import { LoadingSpinner } from '../components/loading-icon'
 
 import { Private } from './private'
 import { Public } from './public'

@@ -14,7 +14,7 @@ export const Private: React.FC = () => {
       try {
         const token = await getAccessTokenSilently({
           audience: process.env.REACT_APP_AUTH0_AUDIENCE,
-          scope: 'read:users',
+          scope: 'read:current_user',
         })
         setAccessToken(token)
       } catch (e) {
