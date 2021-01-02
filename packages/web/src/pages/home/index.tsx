@@ -23,13 +23,13 @@ export const Home: React.FC = () => {
   return (
     <>
       <Header pageTitle="Home" />
-      <h1>ログイン完了</h1>
-      <pre>
-        <code>{JSON.stringify({ data }, null, 2)}</code>
-      </pre>
-      <button onClick={() => logout({ returnTo: window.location.origin })}>
-        ログアウト
-      </button>
+      <main className="container px-4">
+        <h1>ログイン完了</h1>
+
+        <button onClick={() => logout({ returnTo: window.location.origin })}>
+          ログアウト
+        </button>
+      </main>
     </>
   )
 }
