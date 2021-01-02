@@ -1,4 +1,4 @@
-## Next.js Hasura TypeScript環境構築
+## React Hasura TypeScript環境構築
 
 yarn install -W
 
