@@ -7,8 +7,8 @@ type Props = {
 
 export const Header: React.FC<Props> = ({ pageTitle = 'React Hasura App' }) => {
   return (
-    <header className="h-66">
-      <h2>{pageTitle}</h2>
+    <header className="px-4 h-16 flex items-center bg-primary">
+      <h2 className="text-textPrimary">{pageTitle}</h2>
     </header>
   )
 }

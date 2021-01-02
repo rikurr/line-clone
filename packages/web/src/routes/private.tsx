@@ -30,6 +30,7 @@ export const Private: React.FC = () => {
         <Route path="/" exact>
           <Home />
         </Route>
+        <Redirect to="/" />
       </Switch>
     </ApolloProvider>
   )
