@@ -13,6 +13,7 @@ module.exports = {
       borderColor: 'var(--border-color)',
       black: 'var(--black)',
       white: 'var(--white)',
+      gray: 'var(--gray)',
       blue: 'var(--blue)',
       linkText: 'var(--link-text)',
     },

@@ -3,6 +3,7 @@ import { Header } from '../../components/header'
 import { useAuth0 } from '@auth0/auth0-react'
 import { LoadingSpinner } from '../../components/loading-icon'
 import { useChatsListQuery } from '../../generated/graphql'
+import { ChatsList } from '../../components/chats-list'
 
 export const Home: React.FC = () => {
   const { user } = useAuth0()
@@ -30,26 +31,20 @@ export const Home: React.FC = () => {
 
         {data &&
           data.chat.map((list) => (
-            <div key={list.id} className="flex hover:bg-tertiary">
-              <img
-                className="inline object-cover w-12 h-12 mr-2 rounded-full"
-                src={list.picture ?? list.users[0].user.picture!}
-                alt="chat img"
-              />
-              <div className="w-full pb-2 border-b border-borderColor flex justify-between">
-                <div>
-                  <p className="font-bold">
-                    {list.name ?? list.users[0].user.username}
-                  </p>
-                  <p className="text-sm text-secondaryText">
-                    {list.messages[0].content}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-secondaryText">18:11</p>
-                </div>
-              </div>
-            </div>
+            <ChatsList
+              key={list.id}
+              chat={{ name: list.name, picture: list.picture, id: list.id }}
+              user={{
+                id: list.users[0].user.id,
+                username: list.users[0].user.username,
+                picture: list.users[0].user.picture,
+              }}
+              message={{
+                id: list.messages[0].id,
+                content: list.messages[0].content,
+                created_at: list.messages[0].created_at,
+              }}
+            />
           ))}
       </main>
     </>

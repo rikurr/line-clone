@@ -58,7 +58,6 @@ query ChatsList($userId: String!) {
       user {
         id
         username
-        name
         picture
       }
     }
