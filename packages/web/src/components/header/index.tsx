@@ -8,10 +8,10 @@ type Props = {
 export const Header: React.FC<Props> = ({ pageTitle = 'React Hasura App' }) => {
   const { logout } = useAuth0()
   return (
-    <header className="px-4 h-16 flex items-center bg-primary">
-      <h2 className="text-textPrimary md:text-xl">{pageTitle}</h2>
+    <header className="px-4 h-16 flex justify-between items-center bg-primary">
+      <h2 className="text-white text-xl font-bold">{pageTitle}</h2>
       <button
-        className="bg-primary hover:opacity-80 text-textPrimary font-bold py-2 px-4 rounded"
+        className="bg-primary hover:opacity-80 text-white font-bold py-2 px-4 rounded"
         onClick={() => logout({ returnTo: window.location.origin })}
       >
         ログアウト

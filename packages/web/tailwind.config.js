@@ -4,11 +4,17 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      primary: 'var(--primary-bg)',
-      secondary: 'var(--secondary-bg)',
-      tertiary: 'var(--tertiary-bg)',
-      textPrimary: 'var(--primary-text)',
-      secondaryText: 'var(--secondary-text)',
+      primary: 'var(--primary)',
+      primaryLight: 'var(--primary-dark)',
+      secondary: 'var(--secondary)',
+      secondaryLight: 'var(--secondary-light)',
+      primaryBg: 'var(--primary-bg)',
+      secondaryBg: 'var(--secondary-bg)',
+      borderColor: 'var(--border-color)',
+      black: 'var(--black)',
+      white: 'var(--white)',
+      blue: 'var(--blue)',
+      linkText: 'var(--link-text)',
     },
   },
   variants: {

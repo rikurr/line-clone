@@ -1,9 +1,16 @@
 :root {
-  --primary-bg: #2c6157;
-  --secondary-bg: #6fd056;
-  --tertiary-bg: #dcdcdc;
-  --primary-text: #fff;
-  --secondary-text: #aaa;
+  --primary: #075e54;
+  --primary-light: #128c7e;
+  --secondary: #6fd056;
+  --secondary-light: #dcf8c6;
+  --primary-bg: #ece5dd;
+  --secondary-bg: #fff;
+  --border-color: #dcdcdc;
+  --black: #333;
+  --gray: #aaa;
+  --white: #fff;
+  --blue: #34b7f1;
+  --link-text: #4169e1;
 }
 @tailwind base;
 @tailwind components;

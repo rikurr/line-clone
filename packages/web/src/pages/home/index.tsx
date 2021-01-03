@@ -22,8 +22,12 @@ export const Home: React.FC = () => {
 
   return (
     <>
-      <Header pageTitle="Home" />
+      <Header pageTitle="チャット" />
       <main className="w-full p-4 mx-auto">
+        <p className="font-bold text-sm text-linkText mb-2 pb-2 border-b border-borderColor hover:opacity-80">
+          新規グループ
+        </p>
+
         {data &&
           data.chat.map((list) => (
             <div key={list.id} className="flex hover:bg-tertiary">
@@ -32,7 +36,7 @@ export const Home: React.FC = () => {
                 src={list.picture ?? list.users[0].user.picture!}
                 alt="chat img"
               />
-              <div className="w-full pb-2 border-b border-tertiary flex justify-between">
+              <div className="w-full pb-2 border-b border-borderColor flex justify-between">
                 <div>
                   <p className="font-bold">
                     {list.name ?? list.users[0].user.username}

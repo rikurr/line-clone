@@ -13,7 +13,7 @@ export const Button: React.FC<Props> = ({
   return (
     <button
       type={type}
-      className="bg-primary hover:opacity-80 text-textPrimary font-bold py-2 px-4 rounded"
+      className="bg-primary hover:opacity-80 text-white font-bold py-2 px-4 rounded"
       onClick={() => onClick()}
     >
       {children}

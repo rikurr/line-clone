@@ -46,7 +46,10 @@ query ExistingChatUsers($userId: String) {
 }
 
 query ChatsList($userId: String!) {
-  chat(order_by: { messages_aggregate: { max: { created_at: desc } } }) {
+  chat(
+    where: { users: { user_id: { _eq: $userId } } }
+    order_by: { messages_aggregate: { max: { created_at: desc } } }
+  ) {
     id
     name
     picture
