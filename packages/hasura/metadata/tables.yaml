@@ -108,12 +108,18 @@
     permission:
       check:
         _or:
-        - sender_id:
-            _eq: X-Hasura-User-Id
+        - chat:
+            owner_id:
+              _eq: X-Hasura-User-Id
         - chat:
             users:
               user_id:
                 _eq: X-Hasura-User-Id
+        - chat:
+            owner_id:
+              _is_null: true
+      set:
+        sender_id: x-hasura-User-Id
       columns:
       - content
       backend_only: false

@@ -1,8 +1,123 @@
-query getUser($id: String!) {
-  users(where: { id: { _eq: $id } }) {
+query getUser($userId: String!) {
+  users(where: { id: { _eq: $userId } }) {
     id
     name
     username
+    picture
+  }
+}
+
+mutation NewChatScreen($userId: String!, $currentUserId: String!) {
+  insert_chat(
+    objects: [
+      {
+        owner_id: null
+        users: { data: [{ user_id: $userId }, { user_id: $currentUserId }] }
+      }
+    ]
+  ) {
+    affected_rows
+  }
+}
+
+query ExistingChatUsers($userId: String) {
+  chat(
+    where: {
+      users: { user_id: { _eq: $userId } }
+      owner_id: { _is_null: true }
+    }
+  ) {
+    id
+    name
+    owner_id
+    users(
+      order_by: [{ user_id: desc }]
+      where: { user_id: { _neq: $userId } }
+    ) {
+      user_id
+      user {
+        id
+        name
+        picture
+        username
+      }
+    }
+  }
+}
+
+query ChatsList($userId: String!) {
+  chat(
+    order_by: [{ messages_aggregate: { max: { created_at: desc } } }]
+    where: { users: { user_id: { _eq: $userId } } }
+  ) {
+    id
+    name
+    picture
+    owner_id
+    users(where: { user_id: { _neq: $userId } }) {
+      user {
+        id
+        username
+        name
+        picture
+      }
+    }
+  }
+}
+
+mutation MessageBox($chatId: Int!, $content: String!, $sender_id: String!) {
+  insert_message(
+    objects: [{ chat_id: $chatId, content: $content, sender_id: $sender_id }]
+  ) {
+    affected_rows
+  }
+}
+
+mutation deleteChat($chatId: Int!) {
+  delete_chat_users(where: { chat_id: { _eq: $chatId } }) {
+    affected_rows
+  }
+  delete_message(where: { chat_id: { _eq: $chatId } }) {
+    affected_rows
+  }
+  delete_chat(where: { id: { _eq: $chatId } }) {
+    affected_rows
+  }
+}
+
+mutation profile($name: String, $picture: String, $userId: String) {
+  update_users(
+    _set: { name: $name, picture: $picture }
+    where: { id: { _eq: $userId } }
+  ) {
+    affected_rows
+    returning {
+      id
+      name
+      picture
+      username
+    }
+  }
+}
+
+subscription MessageAdded {
+  message {
+    id
+    chat_id
+    sender {
+      id
+      name
+    }
+    content
+    created_at
+  }
+}
+
+subscription UserUpdated {
+  users(order_by: [{ id: desc }]) {
+    id
+    username
+    name
     picture
   }
 }
