@@ -46,10 +46,7 @@ query ExistingChatUsers($userId: String) {
 }
 
 query ChatsList($userId: String!) {
-  chat(
-    order_by: [{ messages_aggregate: { max: { created_at: desc } } }]
-    where: { users: { user_id: { _eq: $userId } } }
-  ) {
+  chat(order_by: { messages_aggregate: { max: { created_at: desc } } }) {
     id
     name
     picture
@@ -61,6 +58,11 @@ query ChatsList($userId: String!) {
         name
         picture
       }
+    }
+    messages(order_by: { created_at: desc }, limit: 1) {
+      id
+      content
+      created_at
     }
   }
 }
@@ -121,3 +123,24 @@ subscription UserUpdated {
     picture
   }
 }
+
+# query ChatsList($userId: String!) {
+#   chat(where: {users: {user_id: {_eq: $userId}}}, order_by: {messages_aggregate: {max: {created_at: desc}}}) {
+#     id
+#     name
+#     picture
+#     owner_id
+#     users(where: {user_id: {_neq: $userId}}) {
+#       user {
+#         id
+#         username
+#         name
+#         picture
+#       }
+#     }
+#     messages(order_by: {created_at: desc}, limit: 1) {
+#       content
+#       created_at
+#     }
+#   }
+# }

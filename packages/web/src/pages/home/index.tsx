@@ -1,21 +1,21 @@
 import React from 'react'
 import { Header } from '../../components/header'
 import { useAuth0 } from '@auth0/auth0-react'
-import { useGetUserQuery } from '../../types/graphql'
 import { LoadingSpinner } from '../../components/loading-icon'
+import { useChatsListQuery } from '../../generated/graphql'
 
 export const Home: React.FC = () => {
-  const { logout, user } = useAuth0()
-  const { data, loading, error } = useGetUserQuery({
-    variables: { id: user.sub },
+  const { user } = useAuth0()
+  const { data, loading, error } = useChatsListQuery({
+    variables: { userId: user.sub },
   })
 
   if (loading) {
     return <LoadingSpinner />
   }
 
-  if (error) {
-    return <div>error</div>
+  if (!data || error) {
+    return <div>{error?.message ?? 'error'}</div>
   }
 
   console.log(data)
@@ -24,13 +24,29 @@ export const Home: React.FC = () => {
     <>
       <Header pageTitle="Home" />
       <main className="w-full p-4 mx-auto">
-        <h1>ログイン完了</h1>
-        <button
-          className="bg-primary hover:opacity-80 text-textPrimary font-bold py-2 px-4 rounded"
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          ログアウト
-        </button>
+        {data &&
+          data.chat.map((list) => (
+            <div key={list.id} className="flex hover:bg-tertiary">
+              <img
+                className="inline object-cover w-12 h-12 mr-2 rounded-full"
+                src={list.picture ?? list.users[0].user.picture!}
+                alt="chat img"
+              />
+              <div className="w-full pb-2 border-b border-tertiary flex justify-between">
+                <div>
+                  <p className="font-bold">
+                    {list.name ?? list.users[0].user.username}
+                  </p>
+                  <p className="text-sm text-secondaryText">
+                    {list.messages[0].content}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-secondaryText">18:11</p>
+                </div>
+              </div>
+            </div>
+          ))}
       </main>
     </>
   )

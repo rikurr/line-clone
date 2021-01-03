@@ -1,8 +1,9 @@
 :root {
   --primary-bg: #2c6157;
   --secondary-bg: #6fd056;
+  --tertiary-bg: #dcdcdc;
   --primary-text: #fff;
-  --secondary-text: #fff;
+  --secondary-text: #aaa;
 }
 @tailwind base;
 @tailwind components;
