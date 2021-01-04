@@ -1,9 +1,15 @@
 export type FormattedDate = {
-  datetime: string
+  datetime: string | null
   isNew: boolean
 }
 
-export const formatDate = (d: Date, now: Date): FormattedDate => {
+export const formatDate = (d: Date | null, now: Date): FormattedDate => {
+  if (!d) {
+    return {
+      datetime: null,
+      isNew: false,
+    }
+  }
   const dtf = new Intl.DateTimeFormat('ja-JP', {
     month: '2-digit',
     day: '2-digit',

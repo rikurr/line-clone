@@ -1,12 +1,3 @@
-query getUser($userId: String!) {
-  users(where: { id: { _eq: $userId } }) {
-    id
-    name
-    username
-    picture
-  }
-}
-
 mutation NewChatScreen($userId: String!, $currentUserId: String!) {
   insert_chat(
     objects: [

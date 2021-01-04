@@ -23,12 +23,13 @@ type Chat = {
 type Props = {
   chat: Chat
   user: User
-  message: Message
+  message: Message | null
 }
 
 export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
+  const time = message ? message.created_at : null
   const { datetime, isNew } = formatDate(
-    new Date(message.created_at),
+    time ? new Date(time) : null,
     new Date(),
   )
 
@@ -44,10 +45,12 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
         <div className="w-full pb-2 border-b border-borderColor flex justify-between">
           <div>
             <p className="font-bold">{chat.name ?? user.username}</p>
-            <p className="text-sm text-gray">{message.content}</p>
+            <p className="text-sm text-gray">
+              {message ? message.content : '新規メッセージを作成する'}
+            </p>
           </div>
           <div>
-            <p className="text-sm text-gray">{datetime}</p>
+            <p className="text-sm text-gray">{datetime ?? ''}</p>
           </div>
         </div>
       </div>

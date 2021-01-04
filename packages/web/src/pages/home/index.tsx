@@ -30,22 +30,35 @@ export const Home: React.FC = () => {
         </p>
 
         {data &&
-          data.chat.map((list) => (
-            <ChatsList
-              key={list.id}
-              chat={{ name: list.name, picture: list.picture, id: list.id }}
-              user={{
-                id: list.users[0].user.id,
-                username: list.users[0].user.username,
-                picture: list.users[0].user.picture,
-              }}
-              message={{
-                id: list.messages[0].id,
-                content: list.messages[0].content,
-                created_at: list.messages[0].created_at,
-              }}
-            />
-          ))}
+          data.chat.map((list) =>
+            list.messages[0] ? (
+              <ChatsList
+                key={list.id}
+                chat={{ name: list.name, picture: list.picture, id: list.id }}
+                user={{
+                  id: list.users[0].user.id,
+                  username: list.users[0].user.username,
+                  picture: list.users[0].user.picture,
+                }}
+                message={{
+                  id: list.messages[0].id,
+                  content: list.messages[0].content,
+                  created_at: list.messages[0].created_at,
+                }}
+              />
+            ) : (
+              <ChatsList
+                key={list.id}
+                chat={{ name: list.name, picture: list.picture, id: list.id }}
+                user={{
+                  id: list.users[0].user.id,
+                  username: list.users[0].user.username,
+                  picture: list.users[0].user.picture,
+                }}
+                message={null}
+              />
+            ),
+          )}
       </main>
     </>
   )
