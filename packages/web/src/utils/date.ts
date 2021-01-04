@@ -12,9 +12,9 @@ export const formatDate = (d: Date, now: Date): FormattedDate => {
     minute: '2-digit',
   })
   const [
-    { value: day },
-    ,
     { value: month },
+    ,
+    { value: day },
     ,
     { value: year },
     ,
@@ -23,10 +23,8 @@ export const formatDate = (d: Date, now: Date): FormattedDate => {
     { value: minute },
   ] = dtf.formatToParts(d)
 
-  console.log((now.getTime() - d.getTime()) / 1000)
-  console.log(24 * 60 * 60)
   const past = (now.getTime() - d.getTime()) / 1000
-  const isNew = past < 24 * 60 * 60 * 1
+  const isNew = past < 24 * 60 * 60
   return {
     datetime: `${year}/${month}/${day} ${hour}:${minute}`,
     isNew,
