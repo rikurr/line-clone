@@ -5,7 +5,6 @@ export type FormattedDate = {
 
 export const formatDate = (d: Date, now: Date): FormattedDate => {
   const dtf = new Intl.DateTimeFormat('ja-JP', {
-    year: 'numeric',
     month: '2-digit',
     day: '2-digit',
     hour: '2-digit',
@@ -16,8 +15,6 @@ export const formatDate = (d: Date, now: Date): FormattedDate => {
     ,
     { value: day },
     ,
-    { value: year },
-    ,
     { value: hour },
     ,
     { value: minute },
@@ -26,7 +23,7 @@ export const formatDate = (d: Date, now: Date): FormattedDate => {
   const past = (now.getTime() - d.getTime()) / 1000
   const isNew = past < 24 * 60 * 60
   return {
-    datetime: `${year}/${month}/${day} ${hour}:${minute}`,
+    datetime: isNew ? `${hour}:${minute}` : `${month}/${day} ${hour}:${minute}`,
     isNew,
   }
 }

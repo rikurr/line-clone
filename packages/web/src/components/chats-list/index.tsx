@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDate } from '../../utils/date'
 
 type User = {
   id: string
@@ -25,38 +26,6 @@ type Props = {
   message: Message
 }
 
-export type FormattedDate = {
-  datetime: string
-  isNew: boolean
-}
-
-export const formatDate = (d: Date, now: Date): FormattedDate => {
-  const dtf = new Intl.DateTimeFormat('ja-JP', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  })
-  const [
-    { value: year },
-    ,
-    { value: month },
-    ,
-    { value: day },
-    ,
-    { value: hour },
-    ,
-    { value: minute },
-  ] = dtf.formatToParts(d)
-  const past = (now.getTime() - d.getTime()) / 1000
-  const isNew = past < 24 * 60 * 60 * 7
-  return {
-    datetime: `${year}/${month}/${day} ${hour}:${minute}`,
-    isNew,
-  }
-}
-
 export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
   const { datetime, isNew } = formatDate(
     new Date(message.created_at),
@@ -78,7 +47,7 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
             <p className="text-sm text-gray">{message.content}</p>
           </div>
           <div>
-            <p className="text-sm text-gray">18:11</p>
+            <p className="text-sm text-gray">{datetime}</p>
           </div>
         </div>
       </div>
