@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 import { Home } from '../pages/home'
 import { ApolloProvider } from '../providers/apollo'
+import { Chat } from '../pages/chat'
 
 export const Private: React.FC = () => {
   const { user, getAccessTokenSilently } = useAuth0()
@@ -29,6 +30,9 @@ export const Private: React.FC = () => {
       <Switch>
         <Route path="/" exact>
           <Home />
+        </Route>
+        <Route path="/chat/:id">
+          <Chat />
         </Route>
         <Redirect to="/" />
       </Switch>

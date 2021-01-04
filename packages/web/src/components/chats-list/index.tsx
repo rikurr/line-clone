@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { formatDate } from '../../utils/date'
 
 type User = {
@@ -28,14 +29,10 @@ type Props = {
 
 export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
   const time = message ? message.created_at : null
-  const { datetime, isNew } = formatDate(
-    time ? new Date(time) : null,
-    new Date(),
-  )
+  const { datetime } = formatDate(time ? new Date(time) : null, new Date())
 
-  console.log(datetime, isNew)
   return (
-    <>
+    <Link to={`chat/${chat.id}`}>
       <div className="flex hover:bg-tertiary">
         <img
           className="inline object-cover w-12 h-12 mr-2 rounded-full"
@@ -54,6 +51,6 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
           </div>
         </div>
       </div>
-    </>
+    </Link>
   )
 }

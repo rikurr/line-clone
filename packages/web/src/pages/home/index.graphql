@@ -95,18 +95,18 @@ mutation profile($name: String, $picture: String, $userId: String) {
   }
 }
 
-subscription MessageAdded {
-  message {
-    id
-    chat_id
-    sender {
-      id
-      name
-    }
-    content
-    created_at
-  }
-}
+# subscription MessageAdded {
+#   message {
+#     id
+#     chat_id
+#     sender {
+#       id
+#       name
+#     }
+#     content
+#     created_at
+#   }
+# }
 
 subscription UserUpdated {
   users(order_by: [{ id: desc }]) {

@@ -19,8 +19,6 @@ export const Home: React.FC = () => {
     return <div>{error?.message ?? 'error'}</div>
   }
 
-  console.log(data)
-
   return (
     <>
       <Header pageTitle="チャット" />

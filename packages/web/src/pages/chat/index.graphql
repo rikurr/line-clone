@@ -1,0 +1,13 @@
+subscription MessageAdded($chatId: Int!) {
+  message(where: {chat_id: {_eq: $chatId}}, order_by: {created_at: asc}) {
+    id
+    chat_id
+    sender {
+      id
+      username
+      picture
+    }
+    content
+    created_at
+  }
+}
