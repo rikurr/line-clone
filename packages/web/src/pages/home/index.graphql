@@ -60,14 +60,6 @@ query ChatsList($userId: String!) {
   }
 }
 
-mutation MessageBox($chatId: Int!, $content: String!, $sender_id: String!) {
-  insert_message(
-    objects: [{ chat_id: $chatId, content: $content, sender_id: $sender_id }]
-  ) {
-    affected_rows
-  }
-}
-
 mutation deleteChat($chatId: Int!) {
   delete_chat_users(where: { chat_id: { _eq: $chatId } }) {
     affected_rows
@@ -95,18 +87,11 @@ mutation profile($name: String, $picture: String, $userId: String) {
   }
 }
 
-# subscription MessageAdded {
-#   message {
-#     id
-#     chat_id
-#     sender {
-#       id
-#       name
-#     }
-#     content
-#     created_at
-#   }
-# }
+mutation MessageBox($chatId: Int!, $content: String!) {
+  insert_message(objects: [{ chat_id: $chatId, content: $content }]) {
+    affected_rows
+  }
+}
 
 subscription UserUpdated {
   users(order_by: [{ id: desc }]) {
