@@ -2,7 +2,7 @@ import React, { ChangeEvent, InputHTMLAttributes } from 'react'
 
 type Props = {
   value: string
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
 } & InputHTMLAttributes<HTMLInputElement>
 
 export const InputText: React.FC<Props> = ({

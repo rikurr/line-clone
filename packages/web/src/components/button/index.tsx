@@ -1,4 +1,4 @@
-import React, { ReactNode, ButtonHTMLAttributes, useMemo } from 'react'
+import React, { ReactNode, ButtonHTMLAttributes } from 'react'
 
 type Props = {
   children: ReactNode
