@@ -2,14 +2,19 @@ import React, { useCallback, useState, ChangeEvent } from 'react'
 import { Header } from '../../components/header'
 import { LoadingSpinner } from '../../components/loading-icon'
 import { useParams } from 'react-router'
+import { useAuth0 } from '@auth0/auth0-react'
 import {
   useMessageAddedSubscription,
   useMessageBoxMutation,
 } from '../../generated/graphql'
+import { Message } from '../../components/message'
+import { Button } from '../../components/button'
+import { InputText } from '../../components/input-text/index'
 
 export const Chat: React.FC = () => {
   const [content, setContent] = useState<string>('')
   const { id } = useParams<{ id: string }>()
+  const { user } = useAuth0()
   const { data, loading } = useMessageAddedSubscription({
     variables: { chatId: Number(id) },
   })
@@ -46,32 +51,29 @@ export const Chat: React.FC = () => {
   if (loading) {
     return <LoadingSpinner />
   }
-  if (data) {
-    console.log(data)
-  }
   return (
     <>
       <Header pageTitle="Messages" />
       <main className="w-full p-4 mx-auto bg-primaryBg h-screen">
         {data &&
-          data.message.map((item) => <div key={item.id}>{item.content}</div>)}
+          data.message.map((item) => (
+            <Message
+              key={item.id}
+              content={item.content}
+              senderId={item.sender.id}
+              username={item.sender.username}
+              created_at={item.created_at}
+              currentUser={user.sub}
+              picture={item.sender.picture}
+            />
+          ))}
       </main>
       <form
         className="flex justify-between fixed w-full h-20 p-6 bg-borderColor bottom-0"
         onSubmit={handleClick}
       >
-        <input
-          type="text"
-          className="border border-gray rounded-xl mr-2 w-4/5"
-          onChange={handleChange}
-          value={content}
-        />
-        <button
-          className="w-1/5 rounded-xl bg-linkText text-white"
-          type="submit"
-        >
-          送信
-        </button>
+        <InputText type="text" onChange={handleChange} value={content} />
+        <Button type="submit">送信</Button>
       </form>
     </>
   )

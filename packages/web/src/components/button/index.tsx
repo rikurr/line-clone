@@ -1,4 +1,4 @@
-import React, { ReactNode, ButtonHTMLAttributes } from 'react'
+import React, { ReactNode, ButtonHTMLAttributes, useMemo } from 'react'
 
 type Props = {
   children: ReactNode
@@ -12,7 +12,7 @@ export const Button: React.FC<Props> = ({
   return (
     <button
       type={type}
-      className="bg-primary hover:opacity-80 text-white font-bold py-2 px-4 rounded"
+      className="w-1/5 rounded-xl bg-linkText text-white"
       {...rest}
     >
       {children}
