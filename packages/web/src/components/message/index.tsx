@@ -21,17 +21,20 @@ export const Message: React.FC<Props> = ({
 }) => {
   const { datetime } = formatDate(new Date(created_at), new Date())
   return currentUser === senderId ? (
-    <div className="flex items-end justify-between bg-secondaryLight ml-auto mt-1 p-2 w-8/12 rounded-lg ">
-      <p className="font-bold mr-4">{content}</p>
-      <p className="text-xs text-gray">{datetime}</p>
+    <div className="bg-secondaryLight max-w-3/4 clear-both float-right mt-1 font-bold p-2 rounded-lg shadow-sm">
+      <span>{content}</span>
+      <span className="text-xs pl-2 inline-block font-normal relative -bottom-2 float-right text-gray">
+        {datetime}
+      </span>
     </div>
   ) : (
     <>
-      <div className="flex items-end justify-between bg-white mr-auto mt-1 p-2 w-8/12 rounded-lg ">
-        <p className="font-bold mr-4">{content}</p>
-        <p className="text-xs text-gray">{datetime}</p>
+      <div className="bg-white max-w-3/4 clear-both font-bold float-left mt-1 p-2 rounded-lg shadow-sm">
+        <span>{content}</span>
+        <span className="text-xs pl-2 inline-block font-normal relative -bottom-2 float-right text-gray">
+          {datetime}
+        </span>
       </div>
-      <p>{username}</p>
     </>
   )
 }

@@ -13,7 +13,7 @@ export const InputText: React.FC<Props> = ({
   return (
     <input
       type={type}
-      className="border border-gray rounded-xl mr-2 w-4/5"
+      className="border border-gray p-2 rounded-xl mr-2 w-4/5"
       value={value}
       onChange={onChange}
     />

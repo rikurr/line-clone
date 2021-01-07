@@ -9,20 +9,22 @@ type Props = {
 export const Header: React.FC<Props> = ({ pageTitle = 'React Hasura App' }) => {
   const { logout } = useAuth0()
   const history = useHistory()
+
+  console.log(history.location.pathname.length)
   return (
-    <header className="px-4 h-16 flex justify-between items-center bg-primary">
+    <header className="px-4 h-16 flex items-center bg-white border-b border-gray">
       <h2
-        className="text-white text-xl font-bold"
+        className="text-black w-full text-xl font-bold "
         onClick={() => history.push('/')}
       >
         {pageTitle}
       </h2>
-      <button
+      {/* <button
         className="bg-primary hover:opacity-80 text-white py-2 px-4 rounded"
         onClick={() => logout({ returnTo: window.location.origin })}
       >
         ログアウト
-      </button>
+      </button> */}
     </header>
   )
 }
