@@ -33,7 +33,7 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
 
   return (
     <Link to={`chat/${chat.id}`}>
-      <div className="flex hover:bg-tertiary">
+      <div className="flex hover:bg-tertiary mb-2">
         <img
           className="inline object-cover w-12 h-12 mr-2 rounded-full"
           src={chat.picture ?? user.picture!}
