@@ -11,6 +11,8 @@ import { Message } from '../../components/message'
 import { Button } from '../../components/button'
 import { InputText } from '../../components/input-text/index'
 
+import styles from './index.module.css'
+
 export const Chat: React.FC = () => {
   const [content, setContent] = useState<string>('')
   const { id } = useParams<{ id: string }>()
@@ -54,7 +56,9 @@ export const Chat: React.FC = () => {
   return (
     <>
       <Header pageTitle="Messages" />
-      <main className="w-full p-4 mx-auto bg-primaryBg h-screen">
+      <main
+        className={`w-full p-4 mx-auto bg-primaryBg h-screen ${styles.mainHeight}`}
+      >
         {data &&
           data.message.map((item) => (
             <Message
