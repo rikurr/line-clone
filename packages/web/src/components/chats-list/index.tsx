@@ -40,13 +40,13 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
           alt="chat img"
         />
         <div className="w-full pb-2 border-b border-borderColor flex justify-between">
-          <div>
+          <div className="w-11/12">
             <p className="font-bold">{chat.name ?? user.username}</p>
             <p className="text-sm text-gray">
               {message ? message.content : '新規メッセージを作成する'}
             </p>
           </div>
-          <div>
+          <div className="w-1/12">
             <p className="text-sm text-gray">{datetime ?? ''}</p>
           </div>
         </div>

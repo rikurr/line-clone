@@ -87,12 +87,6 @@ mutation profile($name: String, $picture: String, $userId: String) {
   }
 }
 
-mutation MessageBox($chatId: Int!, $content: String!) {
-  insert_message(objects: [{ chat_id: $chatId, content: $content }]) {
-    affected_rows
-  }
-}
-
 subscription UserUpdated {
   users(order_by: [{ id: desc }]) {
     id

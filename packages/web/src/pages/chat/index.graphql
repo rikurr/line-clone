@@ -9,21 +9,21 @@ subscription MessageAdded($chatId: Int!) {
     }
     content
     created_at
+    chat {
+      users {
+        user {
+          id
+          picture
+          username
+        }
+      }
+    }
   }
 }
 
-# mutation MessageBox($chatId: Int!, $content: String!, $sender_id: String!) {
-#   insert_message(
-#     objects: [{ chat_id: $chatId, content: $content, sender_id: $sender_id }]
-#   ) {
-#     affected_rows
-#   }
-# }
 
-# mutation AddMessageBox($chatId: Int!, $content: String!) {
-#   insert_message(
-#     objects: [{ chat_id: $chatId, content: $content }]
-#   ) {
-#     affected_rows
-#   }
-# }
+mutation MessageBox($chatId: Int!, $content: String!) {
+  insert_message(objects: [{ chat_id: $chatId, content: $content }]) {
+    affected_rows
+  }
+}

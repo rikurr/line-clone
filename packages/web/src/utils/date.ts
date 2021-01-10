@@ -11,10 +11,10 @@ export const formatDate = (d: Date | null, now: Date): FormattedDate => {
     }
   }
   const dtf = new Intl.DateTimeFormat('ja-JP', {
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
   })
   const [
     { value: month },
