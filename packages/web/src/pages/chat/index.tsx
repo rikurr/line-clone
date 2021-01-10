@@ -6,6 +6,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import {
   useMessageAddedSubscription,
   useMessageBoxMutation,
+  useGetCurrentChatQuery,
 } from '../../generated/graphql'
 import { Message } from '../../components/message'
 import { Button } from '../../components/button'
@@ -19,6 +20,12 @@ export const Chat: React.FC = () => {
   const { user } = useAuth0()
   const { data, loading } = useMessageAddedSubscription({
     variables: { chatId: Number(id) },
+  })
+  const {
+    data: getCurrentChatData,
+    loading: getCurrentChatLoading,
+  } = useGetCurrentChatQuery({
+    variables: { chatId: Number(id), userId: user.sub },
   })
 
   const [addMessage] = useMessageBoxMutation()
@@ -50,12 +57,14 @@ export const Chat: React.FC = () => {
     [addMessage, content, id],
   )
 
-  if (loading) {
+  if (loading || getCurrentChatLoading) {
     return <LoadingSpinner />
   }
+
+  console.log(getCurrentChatData)
   return (
     <>
-      <Header pageTitle="Messages" />
+      <Header pageTitle={getCurrentChatData?.chat[0].users[0].user.username} />
       <main
         className={`w-full p-4 mx-auto bg-primaryBg h-screen ${styles.mainHeight}`}
       >

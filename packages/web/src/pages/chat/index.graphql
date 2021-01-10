@@ -9,13 +9,19 @@ subscription MessageAdded($chatId: Int!) {
     }
     content
     created_at
-    chat {
-      users {
-        user {
-          id
-          picture
-          username
-        }
+  }
+}
+
+query getCurrentChat($chatId: Int!, $userId: String!) {
+  chat(where: {id: {_eq: $chatId}}) {
+    id
+    name
+    picture
+    users(where: {user_id: {_neq: $userId}}) {
+      user {
+        id
+        picture
+        username
       }
     }
   }
