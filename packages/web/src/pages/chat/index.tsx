@@ -61,10 +61,12 @@ export const Chat: React.FC = () => {
     return <LoadingSpinner />
   }
 
-  console.log(getCurrentChatData)
   return (
     <>
-      <Header pageTitle={getCurrentChatData?.chat[0].users[0].user.username} />
+      <Header
+        pageTitle={getCurrentChatData?.chat[0].users[0].user.username}
+        picture={getCurrentChatData?.chat[0].users[0].user.picture!}
+      />
       <main
         className={`w-full p-4 mx-auto bg-primaryBg h-screen ${styles.mainHeight}`}
       >
