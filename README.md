@@ -13,6 +13,10 @@ REACT_APP_AUTH0_AUDIENCE=
 REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET=
 REACT_APP_HASURA_GRAPHQL_ENDPOINT=
 ```
+## ngrok使用
+```
+  ./ngrok http -host-header="0.0.0.0:8080" 8080
+```
 
 ## フロントエンドのローカル環境
 yarn web start
