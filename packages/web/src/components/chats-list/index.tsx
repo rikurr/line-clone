@@ -32,12 +32,12 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
   const { datetime } = formatDate(time ? new Date(time) : null, new Date())
 
   return (
-    <Link to={`chat/${chat.id}`}>
+    <Link to={`chat/${chat.id}`} aria-label={`${chat.name ?? user.username}へのリンク`}>
       <div className="flex hover:bg-tertiary mb-2">
         <img
           className="inline object-cover w-12 h-12 mr-2 rounded-full"
           src={chat.picture ?? user.picture!}
-          alt="chat img"
+          alt={`${chat.name ?? user.username}の画像`}
         />
         <div className="w-full pb-2 border-b border-borderColor flex justify-between">
           <div className="w-11/12">
