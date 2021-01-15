@@ -25,7 +25,7 @@ export const Header: React.FC<Props> = ({
         />
       )}
       <h2
-        className="text-black w-full text-xl font-bold "
+        className="text-black text-xl font-bold "
         onClick={() => history.push('/')}
       >
         {pageTitle}
