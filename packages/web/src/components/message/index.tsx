@@ -22,7 +22,9 @@ export const Message: React.FC<Props> = ({
 }) => {
   const { datetime } = formatDate(new Date(created_at), new Date())
   return currentUser === senderId ? (
-    <div className="bg-secondaryLight max-w-3/4 clear-both float-right mt-1 font-bold p-2 rounded-lg shadow-sm">
+    <div
+      className={`bg-secondaryLight max-w-3/4 clear-both float-right mt-1 font-bold p-2 rounded-lg shadow-sm relative ${styles.messageRight}`}
+    >
       <span>{content}</span>
       <span className="text-xs pl-2 inline-block font-normal relative -bottom-2 float-right text-gray">
         {datetime}
@@ -30,7 +32,9 @@ export const Message: React.FC<Props> = ({
     </div>
   ) : (
     <>
-      <div className="bg-white max-w-3/4 clear-both font-bold float-left mt-1 p-2 rounded-lg shadow-sm">
+      <div
+        className={`bg-white max-w-3/4 clear-both font-bold float-left mt-1 p-2 rounded-lg shadow-sm relative ${styles.messageLeft}`}
+      >
         <span>{content}</span>
         <span className="text-xs pl-2 inline-block font-normal relative -bottom-2 float-right text-gray">
           {datetime}
