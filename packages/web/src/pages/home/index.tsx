@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Header } from '../../components/header'
 import { useAuth0 } from '@auth0/auth0-react'
 import { LoadingSpinner } from '../../components/loading-icon'
@@ -17,6 +17,10 @@ export const Home: React.FC = () => {
     variables: { userId: user.sub },
   })
 
+  const handleShow = useCallback(() => {
+    setIsShow((prev) => !prev)
+  }, [])
+
   if (chatsLoading || userLoading) {
     return <LoadingSpinner />
   }
@@ -26,10 +30,22 @@ export const Home: React.FC = () => {
     <>
       <Header pageTitle="チャット" />
       <main className="w-full p-4 mx-auto">
-        <p className="font-bold text-sm text-linkText mb-2 pb-2 border-b border-borderColor hover:opacity-80">
-          新規グループ
-        </p>
-        {userData && <UsersList users={userData.users} isShow={isShow} />}
+        <div className="mb-2 pb-2 border-b border-borderColor">
+          <button
+            className="font-bold text-sm text-linkText hover:opacity-80"
+            onClick={handleShow}
+            type="button"
+          >
+            新規グループ
+          </button>
+        </div>
+        {userData && (
+          <UsersList
+            users={userData.users}
+            isShow={isShow}
+            handleShow={handleShow}
+          />
+        )}
         {chatsData &&
           chatsData.chat.map((list) =>
             list.messages[0] ? (
