@@ -88,7 +88,7 @@ mutation profile($name: String, $picture: String, $userId: String) {
 }
 
 subscription UserUpdated {
-  users(order_by: [{ id: desc }]) {
+  users(order_by: [{ username: desc }]) {
     id
     username
     name

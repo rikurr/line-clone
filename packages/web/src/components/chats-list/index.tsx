@@ -32,7 +32,10 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
   const { datetime } = formatDate(time ? new Date(time) : null, new Date())
 
   return (
-    <Link to={`chat/${chat.id}`} aria-label={`${chat.name ?? user.username}へのリンク`}>
+    <Link
+      to={`chat/${chat.id}`}
+      aria-label={`${chat.name ?? user.username}へのリンク`}
+    >
       <div className="flex hover:bg-tertiary mb-2">
         <img
           className="inline object-cover w-12 h-12 mr-2 rounded-full"
@@ -40,13 +43,13 @@ export const ChatsList: React.FC<Props> = ({ chat, user, message }) => {
           alt={`${chat.name ?? user.username}の画像`}
         />
         <div className="w-full pb-2 border-b border-borderColor flex justify-between">
-          <div className="w-11/12">
+          <div className="w-10/12">
             <p className="font-bold">{chat.name ?? user.username}</p>
             <p className="text-sm text-gray">
               {message ? message.content : '新規メッセージを作成する'}
             </p>
           </div>
-          <div className="w-1/12">
+          <div className="w-2/12 pr-2">
             <p className="text-sm text-gray">{datetime ?? ''}</p>
           </div>
         </div>
