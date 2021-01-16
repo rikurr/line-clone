@@ -14,7 +14,6 @@ export const Header: React.FC<Props> = ({
   const { logout } = useAuth0()
   const history = useHistory()
 
-  console.log(history.location.pathname.length)
   return (
     <header className="px-4 h-16 flex items-center bg-white border-b border-gray">
       {picture && (
@@ -30,12 +29,12 @@ export const Header: React.FC<Props> = ({
       >
         {pageTitle}
       </h2>
-      {/* <button
+      <button
         className="bg-primary hover:opacity-80 text-white py-2 px-4 rounded"
         onClick={() => logout({ returnTo: window.location.origin })}
       >
         ログアウト
-      </button> */}
+      </button>
     </header>
   )
 }

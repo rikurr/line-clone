@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Header } from '../../components/header'
 import { useAuth0 } from '@auth0/auth0-react'
 import { LoadingSpinner } from '../../components/loading-icon'
@@ -11,6 +11,7 @@ import { UsersList } from '../../components/users-list'
 
 export const Home: React.FC = () => {
   const { user } = useAuth0()
+  const [isShow, setIsShow] = useState<boolean>(false)
   const { data: userData, loading: userLoading } = useUserUpdatedSubscription()
   const { data: chatsData, loading: chatsLoading } = useChatsListQuery({
     variables: { userId: user.sub },
@@ -28,7 +29,7 @@ export const Home: React.FC = () => {
         <p className="font-bold text-sm text-linkText mb-2 pb-2 border-b border-borderColor hover:opacity-80">
           新規グループ
         </p>
-        {/* {userData && <UsersList users={userData.users} />} */}
+        {userData && <UsersList users={userData.users} isShow={isShow} />}
         {chatsData &&
           chatsData.chat.map((list) =>
             list.messages[0] ? (

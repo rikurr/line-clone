@@ -174,3 +174,12 @@
         table:
           schema: public
           name: chat_users
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - username
+      - picture
+      - created_at
+      filter: {}
