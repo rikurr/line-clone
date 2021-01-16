@@ -28,7 +28,6 @@ query ExistingChatUsers($userId: String) {
       user_id
       user {
         id
-        name
         picture
         username
       }
@@ -72,15 +71,14 @@ mutation deleteChat($chatId: Int!) {
   }
 }
 
-mutation profile($name: String, $picture: String, $userId: String) {
+mutation profile($username: String, $picture: String, $userId: String) {
   update_users(
-    _set: { name: $name, picture: $picture }
+    _set: { username: $username, picture: $picture }
     where: { id: { _eq: $userId } }
   ) {
     affected_rows
     returning {
       id
-      name
       picture
       username
     }
@@ -91,7 +89,6 @@ subscription UserUpdated {
   users(order_by: [{ username: desc }]) {
     id
     username
-    name
     picture
   }
 }

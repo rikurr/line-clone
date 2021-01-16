@@ -174,23 +174,3 @@
         table:
           schema: public
           name: chat_users
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - name
-      - picture
-      - username
-      filter: {}
-  update_permissions:
-  - role: user
-    permission:
-      columns:
-      - name
-      - picture
-      - username
-      filter:
-        id:
-          _eq: X-Hasura-User-Id
-      check: null

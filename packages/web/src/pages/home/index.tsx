@@ -7,6 +7,7 @@ import {
   useUserUpdatedSubscription,
 } from '../../generated/graphql'
 import { ChatsList } from '../../components/chats-list'
+import { UsersList } from '../../components/users-list'
 
 export const Home: React.FC = () => {
   const { user } = useAuth0()
@@ -27,33 +28,7 @@ export const Home: React.FC = () => {
         <p className="font-bold text-sm text-linkText mb-2 pb-2 border-b border-borderColor hover:opacity-80">
           新規グループ
         </p>
-        <div className="z-10 bg-white w-full p-4 pt-12 fixed inset-0">
-          <p className="font-bold text-center">参加者を追加</p>
-          <div className="flex justify-between mt-4 pb-4 border-b border-borderColor">
-            <button className="text-linkText">キャンセル</button>
-            <button className="text-linkText">追加する</button>
-          </div>
-          <div className="mt-4">
-            {userData &&
-              userData.users.map((list) => (
-                <div key={list.id} className="flex hover:bg-tertiary mb-2">
-                  <img
-                    className="inline object-cover w-12 h-12 mr-2 rounded-full"
-                    src={list.picture ?? 'null'}
-                    alt={`${list.username}の画像`}
-                  />
-                  <div className="w-full pb-2 border-b border-borderColor flex justify-between">
-                    <div className="w-10/12">
-                      <p className="font-bold">{list.username}</p>
-                    </div>
-                    <div className="w-2/12">
-                      <p className="text-sm text-gray">まる</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+        {/* {userData && <UsersList users={userData.users} />} */}
         {chatsData &&
           chatsData.chat.map((list) =>
             list.messages[0] ? (
