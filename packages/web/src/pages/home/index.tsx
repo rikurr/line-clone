@@ -36,7 +36,7 @@ export const Home: React.FC = () => {
             onClick={handleShow}
             type="button"
           >
-            新規グループ
+            新規DM
           </button>
         </div>
         {userData && (

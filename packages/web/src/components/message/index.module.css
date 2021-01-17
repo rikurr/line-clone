@@ -5,8 +5,8 @@
   right: -19px;
   border: 8px solid transparent;
   border-left: 18px solid var(--secondary-light);
-  -webkit-transform: rotate(-35deg);
-  transform: rotate(-35deg);
+  -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
 }
 
 .messageLeft::after {
@@ -17,6 +17,6 @@
   left: -19px;
   border: 8px solid transparent;
   border-right: 18px solid var(--white);
-  -webkit-transform: rotate(35deg);
-  transform: rotate(35deg);
+  -webkit-transform: rotate(20deg);
+  transform: rotate(20deg);
 }
