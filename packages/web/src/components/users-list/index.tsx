@@ -9,6 +9,8 @@ type Props = {
   users: User[]
   isShow: boolean
   handleShow: () => void
+  handleClick: (userId: string, currentUserId: string) => void
+  currentUserId: string
 }
 
 type User = {
@@ -18,7 +20,13 @@ type User = {
   __typename?: 'users' | undefined
 }
 
-export const UsersList: React.FC<Props> = ({ users, isShow, handleShow }) => {
+export const UsersList: React.FC<Props> = ({
+  users,
+  isShow,
+  handleShow,
+  handleClick,
+  currentUserId,
+}) => {
   const [isSelect, setSelect] = useState<string>('')
 
   const handleSelect = useCallback((userId) => {
@@ -39,7 +47,13 @@ export const UsersList: React.FC<Props> = ({ users, isShow, handleShow }) => {
         >
           キャンセル
         </button>
-        <button className="font-bold text-sm text-linkText">作成する</button>
+        <button
+          className="font-bold text-sm text-linkText"
+          type="button"
+          onClick={() => handleClick(isSelect, currentUserId)}
+        >
+          作成する
+        </button>
       </div>
       <div className="mt-4">
         {users &&

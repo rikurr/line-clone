@@ -25,7 +25,7 @@ export const Header: React.FC<Props> = ({
   console.log(history.location.pathname.length !== 1 ? 'chat' : 'hello')
 
   return (
-    <header className="px-4 h-16 flex items-center bg-white border-b border-gray">
+    <header className="px-4 h-16 flex items-center bg-secondaryBg border-b border-gray">
       {isBack ? (
         <FontAwesomeIcon
           icon={faChevronLeft}

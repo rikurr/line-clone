@@ -4,22 +4,49 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { LoadingSpinner } from '../../components/loading-icon'
 import {
   useChatsListQuery,
+  useNewChatScreenMutation,
   useUserUpdatedSubscription,
 } from '../../generated/graphql'
 import { ChatsList } from '../../components/chats-list'
 import { UsersList } from '../../components/users-list'
+import { useHistory } from 'react-router'
 
 export const Home: React.FC = () => {
   const { user } = useAuth0()
   const [isShow, setIsShow] = useState<boolean>(false)
   const { data: userData, loading: userLoading } = useUserUpdatedSubscription()
-  const { data: chatsData, loading: chatsLoading } = useChatsListQuery({
+  const {
+    data: chatsData,
+    loading: chatsLoading,
+    refetch: chatsRefetch,
+  } = useChatsListQuery({
     variables: { userId: user.sub },
   })
+  const [insertChat] = useNewChatScreenMutation()
+  const history = useHistory()
 
   const handleShow = useCallback(() => {
     setIsShow((prev) => !prev)
   }, [])
+
+  const handleClick = useCallback(
+    async (userId: string, currentUserId: string): Promise<void> => {
+      if (!userId) {
+        return
+      }
+
+      const { data } = await insertChat({
+        variables: { userId, currentUserId },
+      })
+      if (data) {
+        setIsShow(false)
+        chatsRefetch()
+      } else {
+        console.log("Can't create chat")
+      }
+    },
+    [],
+  )
 
   if (chatsLoading || userLoading) {
     return <LoadingSpinner />
@@ -44,6 +71,8 @@ export const Home: React.FC = () => {
             users={userData.users}
             isShow={isShow}
             handleShow={handleShow}
+            handleClick={handleClick}
+            currentUserId={user.sub}
           />
         )}
         {chatsData &&
